@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Alumnos</string>
+    <string name="nom">Nombre:</string>
+    <string name="ape">Apellido:</string>
+    <string name="age">Edad:</string>
+    <string name="phone">Telefono:</string>
+    <string name="email">Email:</string>
+    <string name="añade">AÑADE USUARIOS</string>
+    <string name="save">GUARDAR</string>
+</resources>

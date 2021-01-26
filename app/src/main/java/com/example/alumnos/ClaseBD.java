@@ -1,26 +1,15 @@
 package com.example.alumnos;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.CharArrayBuffer;
-import android.database.ContentObserver;
 import android.database.Cursor;
-import android.database.DataSetObserver;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ClaseBD extends SQLiteOpenHelper {
 
@@ -46,7 +35,7 @@ public class ClaseBD extends SQLiteOpenHelper {
 
     }
 
-    public void insertarDatos(String nombre, String apellido, String edad, String telefono, String email){
+    public long insertarDatos(String nombre, String apellido, String edad, String telefono, String email){
 
         //Creamos BD para almacenar registros en la tabla
         SQLiteDatabase db = getWritableDatabase();
@@ -67,6 +56,7 @@ public class ClaseBD extends SQLiteOpenHelper {
 
         Log.i("INSERCIÓN PERSONA: ", "El número de registro de la intersección de la persona es: " + id);
 
+        return id;
     }
 
     //Devolver todas las personas registradas en la app
@@ -111,5 +101,9 @@ public class ClaseBD extends SQLiteOpenHelper {
 
         db.close();
 
+    }
+
+    public long actualizarDatos(String txt_nombre, String txt_apellido, String txt_edad, String txt_tel, String txt_email) {
+        return 0;
     }
 }

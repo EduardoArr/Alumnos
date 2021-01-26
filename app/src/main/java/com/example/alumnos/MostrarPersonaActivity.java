@@ -19,7 +19,7 @@ public class MostrarPersonaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_persona);
 
-        textView = (TextView) findViewById(R.id.textView);
+
         claseBD = new ClaseBD(this);
 
         ArrayList<Persona> personas = claseBD.mostrarPersonas(ConstantesBD.C_ADDEDTIME);

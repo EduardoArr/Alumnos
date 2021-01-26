@@ -7,4 +7,5 @@
     <string name="email">Email:</string>
     <string name="añade">AÑADE USUARIOS</string>
     <string name="save">GUARDAR</string>
+    <string name="desc">Descripción:</string>
 </resources>

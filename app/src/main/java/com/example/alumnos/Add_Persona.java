@@ -20,6 +20,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -31,7 +32,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Add_Persona extends AppCompatActivity {
 
     //Creamos los editTexts, imágenes y botones correspondientes
-    CircleImageView imagenAlumno;
+    ImageView imagenPersona;
     EditText nombre;
     EditText apellido;
     EditText telefono;
@@ -56,7 +57,7 @@ public class Add_Persona extends AppCompatActivity {
 
     //Declaramos variables para guardar datos
     Uri uri;
-    String txt_nombre, txt_apellido,  txt_edad, txt_tel, txt_email;
+    String txt_nombre, txt_apellido, txt_edad, txt_tel, txt_email;
 
     //Declaramos un objeto de tipo BD que hemos creado
     ClaseBD clasebd;
@@ -71,7 +72,7 @@ public class Add_Persona extends AppCompatActivity {
         setContentView(R.layout.activity_add__persona);
 
         //Cogemos los elementos de la vista
-        //imagenAlumno = findViewById(R.id.btn_add_photo);
+        imagenPersona = findViewById(R.id.btn_add_photo);
         nombre = findViewById(R.id.nombre);
         telefono = findViewById(R.id.telefono);
         apellido = findViewById(R.id.apellido);
@@ -79,14 +80,17 @@ public class Add_Persona extends AppCompatActivity {
         edad = findViewById(R.id.edad);
         aceptar = findViewById(R.id.save);
 
+
         //Inicializamos y cambiamos el título del ActionBar y lo ponemos como botón negro para volver a la anterior actividad
         actionBar = getSupportActionBar();
         actionBar.setTitle("Agregar Registro");
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
+
         //Inicializamos la base de datos
         clasebd = new ClaseBD(this);
+
 
         //Inicializamos los arrays de permisos
         cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -96,8 +100,9 @@ public class Add_Persona extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         editar = bundle.getBoolean("REQUEST_EDICION_ALUMNO");
         Log.i("EDITAR", "" + editar);
+
         if (editar) {
-            //cambiamos el título dek ActionBar
+            //cambiamos el título del ActionBar
             actionBar.setTitle("Editar Registro");
 
             //si viene de editar cojo los datos de ese alumno
@@ -116,23 +121,22 @@ public class Add_Persona extends AppCompatActivity {
             email.setText(txt_email);
             edad.setText(txt_edad);
 
-            if(uri.toString().equals("null")){
-                imagenAlumno.setImageResource(R.drawable.ic_launcher_foreground);
+            if (uri.toString().equals("null")) {
+                imagenPersona.setImageResource(R.drawable.ic_baseline_person_24);
                 //Cuando pinchamos en agregar imagen de alumno
 
+            } else {
+                imagenPersona.setImageURI(uri);
             }
-            else{
-               imagenAlumno.setImageURI(uri);
-            }
-        }
-        else{
+        } else {
             //cambiamos el título dek ActionBar
             actionBar.setTitle("Agregar Registro");
         }
 
 
+
         //Cuando pinchamos en agregar imagen de alumno
-        imagenAlumno.setOnClickListener(new View.OnClickListener() {
+        imagenPersona.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //vamos al método mostrarOpcionesImagen para que nos aparezca el cuadro de diálogo con las opciones a escoger
@@ -173,9 +177,6 @@ public class Add_Persona extends AppCompatActivity {
 
 
     }
-
-
-
 
 
     private void mostrarOpcionesImagen() {
@@ -333,7 +334,7 @@ public class Add_Persona extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     Uri imagenUri = resultado.getUri();
                     uri = imagenUri;
-                    imagenAlumno.setImageURI(imagenUri);
+                    imagenPersona.setImageURI(imagenUri);
                 } else if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                     //Si hay un error lo mostramos
                     Exception error = resultado.getError();
@@ -354,3 +355,5 @@ public class Add_Persona extends AppCompatActivity {
 
 
 }
+
+

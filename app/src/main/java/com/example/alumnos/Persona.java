@@ -2,6 +2,7 @@ package com.example.alumnos;
 
 public class Persona {
     private String id;
+    private String imagen;
     private String nombre;
     private String apellido;
     private String edad;
@@ -64,5 +65,13 @@ public class Persona {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }

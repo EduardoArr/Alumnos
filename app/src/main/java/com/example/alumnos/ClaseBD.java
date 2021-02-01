@@ -63,19 +63,16 @@ public class ClaseBD extends SQLiteOpenHelper {
     public ArrayList<Persona> mostrarPersonas(String cAddedtime){
         ArrayList<Persona> personas;
         personas = new ArrayList<>();
-           SQLiteDatabase db = getWritableDatabase();
+
            String query = " SELECT * FROM " + ConstantesBD.TABLE_NAME;
 
-           db.execSQL(query);
+           SQLiteDatabase db = this.getWritableDatabase();
+           Cursor cursor = db.rawQuery(query, null);
 
-
-           Cursor cursor;
-           cursor = db.rawQuery(query, null);
-
-           if(cursor.getCount()>0){
-               cursor.moveToFirst();
+           if(cursor.moveToFirst()){
                do{
-                   personas.add(new Persona(
+                   //personas.add(new Persona(
+                   Persona persona = new Persona(
                        cursor.getInt(cursor.getColumnIndex(ConstantesBD.C_ID)) + "",
                            cursor.getString(cursor.getColumnIndex(ConstantesBD.C_NAME)),
                            cursor.getString(cursor.getColumnIndex(ConstantesBD.C_SUBNAME)),
@@ -84,7 +81,8 @@ public class ClaseBD extends SQLiteOpenHelper {
                            cursor.getString(cursor.getColumnIndex(ConstantesBD.C_EMAIL))
                            //cursor.getString(cursor.getColumnIndex(ConstantesBD.C_ADDEDTIME))
 
-                   ));
+                   );
+                   personas.add(persona);
                }while(cursor.moveToNext());
            }
            cursor.close();

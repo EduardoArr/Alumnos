@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item android:id="@+id/bucar"
+        android:title="Buscar"
+        android:icon="@drawable/ic_baseline_search_24"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/ordenar"
+        android:title="Ordenar"
+        android:icon="@drawable/ic_baseline_dehaze_24"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/borrar"
+        android:title="Eliminar"
+        android:icon="@drawable/ic_baseline_delete_forever_24"
+        app:showAsAction="always"/>
+</menu>

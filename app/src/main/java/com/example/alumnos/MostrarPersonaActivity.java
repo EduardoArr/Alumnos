@@ -8,17 +8,18 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MostrarPersonaActivity extends AppCompatActivity {
 
     ImageView imagenAlumno;
-    EditText nombre;
-    EditText apellido;
-    EditText telefono;
-    EditText email;
-    EditText edad;
+    TextView nombre;
+    TextView apellido;
+    TextView telefono;
+    TextView email;
+    TextView edad;
 
     ActionBar actionBar;
     ClaseBD claseBD;
@@ -54,33 +55,38 @@ public class MostrarPersonaActivity extends AppCompatActivity {
         apellido = findViewById(R.id.apellido);
         telefono = findViewById(R.id.telefono);
         email = findViewById(R.id.email);
-        edad = findViewById(R.id.edad);
+        edad = findViewById(R.id.fnacimiento);
 
-        nom = nombre.getText().toString();
-        ape = apellido.getText().toString();
-        age = edad.getText().toString();
-        tele = telefono.getText().toString();
-        ema = email.getText().toString();
+        mostrarDetallePersona(id);
 
-        persona = new Persona(id, nom, ape, age, tele, ema);
+    }
 
-        nombre.setText(persona.getNombre());
-        apellido.setText(persona.getApellido());
-        edad.setText(persona.getEdad());
-        telefono.setText(persona.getTelefono());
-        email.setText(persona.getEmail());
+    public void mostrarDetallePersona(String id){
+        persona = claseBD.getPersonabyId(id);
 
-        if(persona.getImagen().equals("null")){
+        nom = persona.getNombre();
+        ape = persona.getApellido();
+        age = persona.getEdad();
+        tele = persona.getTelefono();
+        ema = persona.getEmail();
+
+        nombre.setText(nom);
+        apellido.setText(ape);
+        Toast.makeText(this, "" + persona.getEdad(), Toast.LENGTH_SHORT).show();
+        edad.setText(age);
+        telefono.setText(tele);
+        email.setText(ema);
+
+       /* if(persona.getImagen().equals("null")){
             imagenAlumno.setImageResource(R.drawable.ic_launcher_foreground);
         }
         else{
             imagenAlumno.setImageURI(Uri.parse(persona.getImagen()));
-        }
+        }*/
     }
 
-
-
     public boolean onSupportNavigateUp(){
+        onBackPressed();
         return super.onSupportNavigateUp();
     }
 }

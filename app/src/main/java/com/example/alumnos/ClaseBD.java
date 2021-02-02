@@ -71,7 +71,7 @@ public class ClaseBD extends SQLiteOpenHelper {
 
            if(cursor.moveToFirst()){
                do{
-                   //personas.add(new Persona(
+
                    Persona persona = new Persona(
                        cursor.getInt(cursor.getColumnIndex(ConstantesBD.C_ID)) + "",
                            cursor.getString(cursor.getColumnIndex(ConstantesBD.C_NAME)),
@@ -79,7 +79,7 @@ public class ClaseBD extends SQLiteOpenHelper {
                            cursor.getString(cursor.getColumnIndex(ConstantesBD.C_AGE)),
                            cursor.getString(cursor.getColumnIndex(ConstantesBD.C_PHONE)),
                            cursor.getString(cursor.getColumnIndex(ConstantesBD.C_EMAIL))
-                           //cursor.getString(cursor.getColumnIndex(ConstantesBD.C_ADDEDTIME))
+
 
                    );
                    personas.add(persona);
@@ -89,6 +89,37 @@ public class ClaseBD extends SQLiteOpenHelper {
            db.close();
 
            return personas;
+
+    }
+
+    //Devolver una persona
+    public Persona getPersonabyId(String id){
+         Persona p = null;
+
+        String query = " SELECT * FROM " + ConstantesBD.TABLE_NAME + " WHERE " + ConstantesBD.C_ID + "=\"" + id + "\"";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if(cursor.moveToFirst()){
+            do{
+                p = new Persona(
+                        cursor.getInt(cursor.getColumnIndex(ConstantesBD.C_ID)) + "",
+                        cursor.getString(cursor.getColumnIndex(ConstantesBD.C_NAME)),
+                        cursor.getString(cursor.getColumnIndex(ConstantesBD.C_SUBNAME)),
+                        cursor.getString(cursor.getColumnIndex(ConstantesBD.C_AGE)),
+                        cursor.getString(cursor.getColumnIndex(ConstantesBD.C_PHONE)),
+                        cursor.getString(cursor.getColumnIndex(ConstantesBD.C_EMAIL))
+                        //cursor.getString(cursor.getColumnIndex(ConstantesBD.C_ADDEDTIME))
+
+                );
+
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return p;
 
     }
 

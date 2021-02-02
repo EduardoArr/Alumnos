@@ -52,14 +52,13 @@ public class AdapterPersona extends RecyclerView.Adapter<AdapterPersona.HolderAl
         final String id = persona.getId();
 
         final String nombre = persona.getNombre();
-        Toast.makeText(contexto, nombre + " " + id, Toast.LENGTH_SHORT).show();
+        Toast.makeText(contexto, nombre + " " + persona.getEdad(), Toast.LENGTH_SHORT).show();
         final String apellido = persona.getApellido();
         final String imagen = persona.getImagen();
         final String telefono = persona.getTelefono();
         final String email = persona.getEmail();
         final String edad = persona.getEdad();
-        //String addedTime = persona.getAddedTime();
-        //String updateTime = alumno.getUpdateTime();
+
 
         //Estos datos los mostramos en las vistas correspondientes de lista_alumno que están recogidas en el holder
         holder.nombre.setText(nombre);

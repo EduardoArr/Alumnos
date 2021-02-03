@@ -57,7 +57,7 @@ public class Add_Persona extends AppCompatActivity {
 
     //Declaramos variables para guardar datos
     Uri uri;
-    String txt_nombre, txt_apellido, txt_edad, txt_tel, txt_email;
+    String  txt_imagen, txt_nombre, txt_apellido, txt_edad, txt_tel, txt_email;
 
     //Declaramos un objeto de tipo BD que hemos creado
     ClaseBD clasebd;
@@ -112,7 +112,7 @@ public class Add_Persona extends AppCompatActivity {
             Log.i("NOMBRE", txt_nombre);
             txt_tel = bundle.getString("telefono");
             txt_email = bundle.getString("email");
-            uri = Uri.parse(bundle.getString("imagen"));
+             txt_imagen = bundle.getString("imagen");
 
             //y los muestro
             nombre.setText(txt_nombre);
@@ -121,7 +121,7 @@ public class Add_Persona extends AppCompatActivity {
             email.setText(txt_email);
             edad.setText(txt_edad);
 
-            if (uri.toString().equals("null")) {
+           if (txt_imagen == null) {
                 imagenPersona.setImageResource(R.drawable.ic_baseline_person_24);
                 //Cuando pinchamos en agregar imagen de alumno
 

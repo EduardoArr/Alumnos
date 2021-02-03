@@ -55,6 +55,7 @@ public class AdapterPersona extends RecyclerView.Adapter<AdapterPersona.HolderAl
         Toast.makeText(contexto, nombre + " " + persona.getEdad(), Toast.LENGTH_SHORT).show();
         final String apellido = persona.getApellido();
         final String imagen = persona.getImagen();
+        //Toast.makeText(contexto, nombre + " " + imagen, Toast.LENGTH_SHORT).show();
         final String telefono = persona.getTelefono();
         final String email = persona.getEmail();
         final String edad = persona.getEdad();
@@ -67,11 +68,12 @@ public class AdapterPersona extends RecyclerView.Adapter<AdapterPersona.HolderAl
         holder.email.setText(email);
 
         //para la imagen, si el usuario no quiere asignar imagen, la uri será nula por lo que configuramos una imagen predeterminada para este caso
-        /*if(imagen.equals("null")){
-            holder.imagen.setImageResource(R.drawable.ic_launcher_foreground);
+        if(imagen == null){
+            Toast.makeText(contexto, nombre + " " + imagen, Toast.LENGTH_SHORT).show();
+            holder.imagen.setImageResource(R.drawable.ic_baseline_person_24);
         }else{
             holder.imagen.setImageURI(Uri.parse(imagen));
-        }*/
+        }
 
         //Si clickamos en un holder (en un item de la lista) nos llevará a la pantalla con los detalles del alumno
         //Además, tendremos que pasarle el id de dicho alumno
@@ -89,14 +91,14 @@ public class AdapterPersona extends RecyclerView.Adapter<AdapterPersona.HolderAl
         holder.btn_mas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mostrarOpcionesDialogo(""+position, id, nombre, apellido, telefono, email, edad);
+                mostrarOpcionesDialogo(""+position, imagen, id, nombre, apellido, telefono, email, edad);
             }
         });
 
     }
 
     //Hacemos un método para mostrar el diálogo del botón de editar y borrar
-    public void mostrarOpcionesDialogo(final String posicion, final String id, final String nombre, final String apellido, final String telefono, final String email,
+    public void mostrarOpcionesDialogo(final String posicion, final String imagen, final String id, final String nombre, final String apellido, final String telefono, final String email,
                                        final String edad){
         //Creamos un array de Strings con las opciones que van a aparecer en el diálogo
 
@@ -120,7 +122,7 @@ public class AdapterPersona extends RecyclerView.Adapter<AdapterPersona.HolderAl
                     intent.putExtra("telefono", telefono);
                     intent.putExtra("email", email);
 
-                    //intent.putExtra("imagen", imagen);
+                    intent.putExtra("imagen", imagen);
                     //Añadimos otro dato para saber si viene de editar
                     intent.putExtra("REQUEST_EDICION_ALUMNO", true);
                     contexto.startActivity(intent);

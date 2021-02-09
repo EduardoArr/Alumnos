@@ -132,7 +132,21 @@ public class ClaseBD extends SQLiteOpenHelper {
 
     }
 
-    public long actualizarDatos(String txt_nombre, String txt_apellido, String txt_edad, String txt_tel, String txt_email) {
-        return 0;
+
+
+    public void editarPersonas(String id,String nombre,String apellidos,String edad,String telefono,String correo) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        //valores.put(ConstantesBD.C_PHOTO, foto);
+        valores.put(ConstantesBD.C_NAME, nombre);
+        valores.put(ConstantesBD.C_SUBNAME, apellidos);
+        valores.put(ConstantesBD.C_AGE, edad);
+        valores.put(ConstantesBD.C_PHONE, telefono);
+        valores.put(ConstantesBD.C_EMAIL, correo);
+
+        db.update(ConstantesBD.TABLE_NAME,valores,""+ConstantesBD.C_ID+"="+id,null);
+        db.close();
+
     }
 }

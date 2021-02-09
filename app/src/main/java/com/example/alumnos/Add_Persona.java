@@ -42,6 +42,7 @@ public class Add_Persona extends AppCompatActivity {
 
     //Creamos un ActionBar
     ActionBar actionBar;
+    Persona p;
 
     //Declaramos códigos que nos servirán para comprobar permisos cámara y almacenamiento
     private static final int REQUEST_CAMERA_CODE = 1;
@@ -57,7 +58,7 @@ public class Add_Persona extends AppCompatActivity {
 
     //Declaramos variables para guardar datos
     Uri uri;
-    String  txt_imagen, txt_nombre, txt_apellido, txt_edad, txt_tel, txt_email;
+    String  txt_imagen, txt_nombre, txt_apellido, txt_edad, txt_tel, txt_email, txt_id;
 
     //Declaramos un objeto de tipo BD que hemos creado
     ClaseBD clasebd;
@@ -107,6 +108,7 @@ public class Add_Persona extends AppCompatActivity {
 
             //si viene de editar cojo los datos de ese alumno
             txt_nombre = bundle.getString("nombre");
+            txt_id = bundle.getString("id");
             txt_apellido = bundle.getString("apellido");
             txt_edad = bundle.getString("edad");
             Log.i("NOMBRE", txt_nombre);
@@ -172,7 +174,7 @@ public class Add_Persona extends AppCompatActivity {
             id = clasebd.insertarDatos(txt_nombre, txt_apellido, txt_edad,  txt_tel, txt_email);
         }
         else{
-            id = clasebd.actualizarDatos(txt_nombre, txt_apellido, txt_edad, txt_tel, txt_email);
+           clasebd.editarPersonas(txt_id, txt_nombre, txt_apellido, txt_edad, txt_tel, txt_email);
         }
 
 

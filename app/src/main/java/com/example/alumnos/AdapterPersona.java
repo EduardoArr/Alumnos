@@ -49,7 +49,7 @@ public class AdapterPersona extends RecyclerView.Adapter<AdapterPersona.HolderAl
 
         //Primero obtenemos los datos de cada alumno por la posición
         Persona persona = personas.get(position);
-        final String id = persona.getId();
+         final String id = persona.getId();
 
         final String nombre = persona.getNombre();
         Toast.makeText(contexto, nombre + " " + persona.getEdad(), Toast.LENGTH_SHORT).show();

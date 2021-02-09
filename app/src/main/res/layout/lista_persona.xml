@@ -46,7 +46,7 @@
                 android:layout_width="305dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black" />
-ic_launcher_foreground
+
             <!--Email del alumno-->
             <TextView
                 android:id="@+id/tv_email"
